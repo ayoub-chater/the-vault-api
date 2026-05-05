@@ -4,7 +4,7 @@
 
 ## Related module / feature
 
-<!-- e.g. Module 01 — Auth, Module 03 — Styling Edit, Feature 16 — Keys -->
+<!-- e.g. Module 01 - Auth, Module 03 - Styling Edit, Feature 16 - Keys -->
 
 ## Type of change
 
@@ -22,7 +22,3 @@
 - [ ] Swagger `@Operation` annotations added on new endpoints
 - [ ] `.env.example` updated (if new environment variables were added)
 - [ ] Self-reviewed before requesting review
-
-## Screenshots (if UI change)
-
-<!-- Add screenshots or remove this section -->

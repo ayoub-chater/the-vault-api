@@ -18,7 +18,7 @@ spring:
     locations: classpath:db/migration
 
 jwt:
-  secret: ${JWT_SECRET:dev-secret-key-change-in-prod-min-32-chars}
+  secret: ${JWT_SECRET:vault-pfe-2025-built-with-passion-never-stop}
   expiration-ms: 900000
   refresh-expiration-ms: 604800000
 
