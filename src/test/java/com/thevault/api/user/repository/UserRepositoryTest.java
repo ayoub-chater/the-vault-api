@@ -2,11 +2,12 @@ package com.thevault.api.user.repository;
 
 import com.thevault.api.user.entity.User;
 import com.thevault.api.user.enums.Role;
+import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestConstructor;
 
 import java.util.Optional;
 
@@ -15,10 +16,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ActiveProfiles("dev")
+@TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
+@AllArgsConstructor
 class UserRepositoryTest {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Test
     void shouldSaveAndFindUserByEmail() {
