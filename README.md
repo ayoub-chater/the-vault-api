@@ -74,6 +74,6 @@ http://localhost:8080/swagger-ui.html
 
 | Branch | Purpose |
 |--------|---------|
-| `main` | Production — protected, PR only |
-| `dev`  | Integration — protected, PR only |
+| `main` | Production - protected, PR only |
+| `dev`  | Integration - protected, PR only |
 | `feature/xxx` | Feature branches |
