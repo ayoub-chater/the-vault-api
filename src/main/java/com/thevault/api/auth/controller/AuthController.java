@@ -1,7 +1,9 @@
 package com.thevault.api.auth.controller;
 
 import com.thevault.api.auth.dto.JwtResponse;
+import com.thevault.api.auth.dto.LoginRequest;
 import com.thevault.api.auth.dto.MessageResponse;
+import com.thevault.api.auth.dto.RefreshTokenRequest;
 import com.thevault.api.auth.dto.RegisterRequest;
 import com.thevault.api.auth.dto.ResendOtpRequest;
 import com.thevault.api.auth.dto.VerifyEmailRequest;
@@ -17,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Tag(name = "Authentication", description = "User registration and email verification")
+@Tag(name = "Authentication", description = "User registration, login, and token management")
 @RestController
 @RequestMapping("/api/auth")
 @AllArgsConstructor
@@ -34,7 +36,7 @@ public class AuthController {
                 .body(new MessageResponse("Account created. Please check your email for the verification code."));
     }
 
-    @Operation(summary = "Verify email with OTP", description = "Validates the OTP and returns a JWT access token on success")
+    @Operation(summary = "Verify email with OTP", description = "Validates the OTP and returns a JWT access token and refresh token on success")
     @PostMapping("/verify-email")
     public ResponseEntity<JwtResponse> verifyEmail(@Valid @RequestBody VerifyEmailRequest request) {
         return ResponseEntity.ok(authService.verifyEmail(request));
@@ -45,5 +47,24 @@ public class AuthController {
     public ResponseEntity<MessageResponse> resendOtp(@Valid @RequestBody ResendOtpRequest request) {
         authService.resendOtp(request);
         return ResponseEntity.ok(new MessageResponse("A new verification code has been sent to your email."));
+    }
+
+    @Operation(summary = "Login", description = "Authenticate with email and password — returns access token and refresh token")
+    @PostMapping("/login")
+    public ResponseEntity<JwtResponse> login(@Valid @RequestBody LoginRequest request) {
+        return ResponseEntity.ok(authService.login(request));
+    }
+
+    @Operation(summary = "Refresh access token", description = "Use a valid refresh token to obtain a new access token")
+    @PostMapping("/refresh")
+    public ResponseEntity<JwtResponse> refresh(@Valid @RequestBody RefreshTokenRequest request) {
+        return ResponseEntity.ok(authService.refresh(request));
+    }
+
+    @Operation(summary = "Logout", description = "Revokes the refresh token, effectively ending the session")
+    @PostMapping("/logout")
+    public ResponseEntity<MessageResponse> logout(@Valid @RequestBody RefreshTokenRequest request) {
+        authService.logout(request);
+        return ResponseEntity.ok(new MessageResponse("Successfully logged out."));
     }
 }

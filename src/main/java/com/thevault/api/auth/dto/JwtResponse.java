@@ -8,5 +8,6 @@ import lombok.Data;
 public class JwtResponse {
 
     private String accessToken;
+    private String refreshToken;
     private final String tokenType = "Bearer";
 }
