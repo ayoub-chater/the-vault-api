@@ -14,3 +14,4 @@ public interface UserMapper {
     @Mapping(target = "email", source = "email")
     User toEntity(RegisterRequest request);
 }
+

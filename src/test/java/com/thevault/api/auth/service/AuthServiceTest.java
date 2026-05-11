@@ -6,6 +6,7 @@ import com.thevault.api.auth.repository.OtpVerificationRepository;
 import com.thevault.api.auth.service.impl.AuthServiceImpl;
 import com.thevault.api.common.exception.EmailAlreadyExistsException;
 import com.thevault.api.user.entity.User;
+import com.thevault.api.user.mapper.UserMapper;
 import com.thevault.api.user.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -43,6 +44,9 @@ class AuthServiceTest {
     @Mock
     private UserDetailsService userDetailsService;
 
+    @Mock
+    private UserMapper userMapper;
+
     @InjectMocks
     private AuthServiceImpl authService;
 
@@ -67,7 +71,10 @@ class AuthServiceTest {
         request.setEmail("ayoub@thevault.com");
         request.setPassword("password123");
 
+        User mappedUser = User.builder().email("ayoub@thevault.com").build();
+
         when(userRepository.existsByEmail(anyString())).thenReturn(false);
+        when(userMapper.toEntity(request)).thenReturn(mappedUser);
         when(passwordEncoder.encode(anyString())).thenReturn("hashed_password");
         when(userRepository.save(any(User.class))).thenAnswer(inv -> {
             User u = inv.getArgument(0);
