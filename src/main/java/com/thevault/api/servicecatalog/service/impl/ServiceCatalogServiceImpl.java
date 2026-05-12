@@ -1,9 +1,9 @@
-package com.thevault.api.service_catalog.service.impl;
+package com.thevault.api.servicecatalog.service.impl;
 
-import com.thevault.api.service_catalog.dto.ServiceCatalogDto;
-import com.thevault.api.service_catalog.mapper.ServiceCatalogMapper;
-import com.thevault.api.service_catalog.repository.ServiceCatalogRepository;
-import com.thevault.api.service_catalog.service.ServiceCatalogService;
+import com.thevault.api.servicecatalog.dto.ServiceCatalogDto;
+import com.thevault.api.servicecatalog.mapper.ServiceCatalogMapper;
+import com.thevault.api.servicecatalog.repository.ServiceCatalogRepository;
+import com.thevault.api.servicecatalog.service.ServiceCatalogService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

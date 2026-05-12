@@ -1,10 +1,10 @@
-package com.thevault.api.service_catalog;
+package com.thevault.api.servicecatalog;
 
-import com.thevault.api.service_catalog.dto.ServiceCatalogDto;
-import com.thevault.api.service_catalog.entity.ServiceCatalog;
-import com.thevault.api.service_catalog.mapper.ServiceCatalogMapper;
-import com.thevault.api.service_catalog.repository.ServiceCatalogRepository;
-import com.thevault.api.service_catalog.service.impl.ServiceCatalogServiceImpl;
+import com.thevault.api.servicecatalog.dto.ServiceCatalogDto;
+import com.thevault.api.servicecatalog.entity.ServiceCatalog;
+import com.thevault.api.servicecatalog.mapper.ServiceCatalogMapper;
+import com.thevault.api.servicecatalog.repository.ServiceCatalogRepository;
+import com.thevault.api.servicecatalog.service.impl.ServiceCatalogServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

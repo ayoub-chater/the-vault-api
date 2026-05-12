@@ -1,4 +1,4 @@
-package com.thevault.api.service_catalog.dto;
+package com.thevault.api.servicecatalog.dto;
 
 import lombok.Data;
 

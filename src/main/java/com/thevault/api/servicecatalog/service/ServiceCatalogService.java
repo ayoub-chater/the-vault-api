@@ -1,6 +1,6 @@
-package com.thevault.api.service_catalog.service;
+package com.thevault.api.servicecatalog.service;
 
-import com.thevault.api.service_catalog.dto.ServiceCatalogDto;
+import com.thevault.api.servicecatalog.dto.ServiceCatalogDto;
 
 import java.util.List;
 

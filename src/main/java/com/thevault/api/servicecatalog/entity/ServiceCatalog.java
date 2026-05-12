@@ -1,4 +1,4 @@
-package com.thevault.api.service_catalog.entity;
+package com.thevault.api.servicecatalog.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

@@ -1,7 +1,7 @@
-package com.thevault.api.service_catalog.controller;
+package com.thevault.api.servicecatalog.controller;
 
-import com.thevault.api.service_catalog.dto.ServiceCatalogDto;
-import com.thevault.api.service_catalog.service.ServiceCatalogService;
+import com.thevault.api.servicecatalog.dto.ServiceCatalogDto;
+import com.thevault.api.servicecatalog.service.ServiceCatalogService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;

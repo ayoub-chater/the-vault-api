@@ -1,4 +1,4 @@
-package com.thevault.api.service_catalog;
+package com.thevault.api.servicecatalog;
 
 import com.thevault.api.common.SecurityRules;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

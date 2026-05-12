@@ -1,6 +1,6 @@
-package com.thevault.api.service_catalog.repository;
+package com.thevault.api.servicecatalog.repository;
 
-import com.thevault.api.service_catalog.entity.ServiceCatalog;
+import com.thevault.api.servicecatalog.entity.ServiceCatalog;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

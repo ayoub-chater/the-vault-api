@@ -1,7 +1,7 @@
-package com.thevault.api.service_catalog.mapper;
+package com.thevault.api.servicecatalog.mapper;
 
-import com.thevault.api.service_catalog.dto.ServiceCatalogDto;
-import com.thevault.api.service_catalog.entity.ServiceCatalog;
+import com.thevault.api.servicecatalog.dto.ServiceCatalogDto;
+import com.thevault.api.servicecatalog.entity.ServiceCatalog;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
