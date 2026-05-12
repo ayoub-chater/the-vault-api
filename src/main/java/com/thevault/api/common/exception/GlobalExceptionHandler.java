@@ -39,6 +39,16 @@ public class GlobalExceptionHandler {
         return build(HttpStatus.UNAUTHORIZED, ex.getMessage());
     }
 
+    @ExceptionHandler(InvalidSocialTokenException.class)
+    public ResponseEntity<ErrorResponse> handleInvalidSocialToken(InvalidSocialTokenException ex) {
+        return build(HttpStatus.UNAUTHORIZED, ex.getMessage());
+    }
+
+    @ExceptionHandler(UnsupportedSocialProviderException.class)
+    public ResponseEntity<ErrorResponse> handleUnsupportedProvider(UnsupportedSocialProviderException ex) {
+        return build(HttpStatus.BAD_REQUEST, ex.getMessage());
+    }
+
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<ErrorResponse> handleBadCredentials(BadCredentialsException ex) {
         return build(HttpStatus.UNAUTHORIZED, "Invalid email or password");

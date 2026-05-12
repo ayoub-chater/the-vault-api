@@ -6,8 +6,10 @@ import com.thevault.api.auth.dto.MessageResponse;
 import com.thevault.api.auth.dto.RefreshTokenRequest;
 import com.thevault.api.auth.dto.RegisterRequest;
 import com.thevault.api.auth.dto.ResendOtpRequest;
+import com.thevault.api.auth.dto.SocialAuthRequest;
 import com.thevault.api.auth.dto.VerifyEmailRequest;
 import com.thevault.api.auth.service.AuthService;
+import com.thevault.api.auth.service.SocialAuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -26,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     private final AuthService authService;
+    private final SocialAuthService socialAuthService;
 
     @Operation(summary = "Register a new user", description = "Creates a new account and sends a 4-digit OTP to the provided email")
     @PostMapping("/register")
@@ -53,6 +56,12 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<JwtResponse> login(@Valid @RequestBody LoginRequest request) {
         return ResponseEntity.ok(authService.login(request));
+    }
+
+    @Operation(summary = "Social login", description = "Authenticate via Google, Facebook or Apple — creates account if first time")
+    @PostMapping("/social")
+    public ResponseEntity<JwtResponse> social(@Valid @RequestBody SocialAuthRequest request) {
+        return ResponseEntity.ok(socialAuthService.authenticate(request));
     }
 
     @Operation(summary = "Refresh access token", description = "Use a valid refresh token to obtain a new access token")
