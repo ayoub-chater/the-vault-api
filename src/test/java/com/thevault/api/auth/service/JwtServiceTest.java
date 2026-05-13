@@ -19,7 +19,7 @@ class JwtServiceTest {
     @BeforeEach
     void setUp() {
         JwtProperties properties = new JwtProperties();
-        properties.setSecret("dmF1bHQtcGZlLTIwMjUtYnVpbHQtd2l0aC1wYXNzaW9uLW5ldmVyLXN0b3A=");
+        properties.setSecret("vault-pfe-2025-built-with-passion-never-stop");
         properties.setExpirationMs(900000L);
         properties.setRefreshExpirationMs(604800000L);
 
