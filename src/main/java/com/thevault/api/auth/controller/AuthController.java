@@ -3,7 +3,6 @@ package com.thevault.api.auth.controller;
 import com.thevault.api.auth.dto.JwtResponse;
 import com.thevault.api.auth.dto.LoginRequest;
 import com.thevault.api.auth.dto.MessageResponse;
-import com.thevault.api.auth.dto.RefreshTokenRequest;
 import com.thevault.api.auth.dto.RegisterRequest;
 import com.thevault.api.auth.dto.ResendOtpRequest;
 import com.thevault.api.auth.dto.SocialAuthRequest;
@@ -12,6 +11,8 @@ import com.thevault.api.auth.service.AuthService;
 import com.thevault.api.auth.service.SocialAuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -30,7 +31,7 @@ public class AuthController {
     private final AuthService authService;
     private final SocialAuthService socialAuthService;
 
-    @Operation(summary = "Register a new user", description = "Creates a new account and sends a 4-digit OTP to the provided email")
+    @Operation(summary = "Register a new user")
     @PostMapping("/register")
     public ResponseEntity<MessageResponse> register(@Valid @RequestBody RegisterRequest request) {
         authService.register(request);
@@ -39,41 +40,49 @@ public class AuthController {
                 .body(new MessageResponse("Account created. Please check your email for the verification code."));
     }
 
-    @Operation(summary = "Verify email with OTP", description = "Validates the OTP and returns a JWT access token and refresh token on success")
+    @Operation(summary = "Verify email with OTP")
     @PostMapping("/verify-email")
-    public ResponseEntity<JwtResponse> verifyEmail(@Valid @RequestBody VerifyEmailRequest request) {
-        return ResponseEntity.ok(authService.verifyEmail(request));
+    public ResponseEntity<JwtResponse> verifyEmail(
+            @Valid @RequestBody VerifyEmailRequest request,
+            HttpServletResponse response) {
+        return ResponseEntity.ok(authService.verifyEmail(request, response));
     }
 
-    @Operation(summary = "Resend OTP code", description = "Invalidates the previous OTP and sends a new one to the user's email")
+    @Operation(summary = "Resend OTP code")
     @PostMapping("/resend-otp")
     public ResponseEntity<MessageResponse> resendOtp(@Valid @RequestBody ResendOtpRequest request) {
         authService.resendOtp(request);
         return ResponseEntity.ok(new MessageResponse("A new verification code has been sent to your email."));
     }
 
-    @Operation(summary = "Login", description = "Authenticate with email and password — returns access token and refresh token")
+    @Operation(summary = "Login with email and password")
     @PostMapping("/login")
-    public ResponseEntity<JwtResponse> login(@Valid @RequestBody LoginRequest request) {
-        return ResponseEntity.ok(authService.login(request));
+    public ResponseEntity<JwtResponse> login(
+            @Valid @RequestBody LoginRequest request,
+            HttpServletResponse response) {
+        return ResponseEntity.ok(authService.login(request, response));
     }
 
-    @Operation(summary = "Social login", description = "Authenticate via Google, Facebook or Apple — creates account if first time")
+    @Operation(summary = "Social login (Google, Facebook, Apple)")
     @PostMapping("/social")
-    public ResponseEntity<JwtResponse> social(@Valid @RequestBody SocialAuthRequest request) {
-        return ResponseEntity.ok(socialAuthService.authenticate(request));
+    public ResponseEntity<JwtResponse> social(
+            @Valid @RequestBody SocialAuthRequest request,
+            HttpServletResponse response) {
+        return ResponseEntity.ok(socialAuthService.authenticate(request, response));
     }
 
-    @Operation(summary = "Refresh access token", description = "Use a valid refresh token to obtain a new access token")
+    @Operation(summary = "Refresh access token", description = "Reads refresh token from HTTP-only cookie")
     @PostMapping("/refresh")
-    public ResponseEntity<JwtResponse> refresh(@Valid @RequestBody RefreshTokenRequest request) {
+    public ResponseEntity<JwtResponse> refresh(HttpServletRequest request) {
         return ResponseEntity.ok(authService.refresh(request));
     }
 
-    @Operation(summary = "Logout", description = "Revokes the refresh token, effectively ending the session")
+    @Operation(summary = "Logout", description = "Revokes the refresh token cookie")
     @PostMapping("/logout")
-    public ResponseEntity<MessageResponse> logout(@Valid @RequestBody RefreshTokenRequest request) {
-        authService.logout(request);
+    public ResponseEntity<MessageResponse> logout(
+            HttpServletRequest request,
+            HttpServletResponse response) {
+        authService.logout(request, response);
         return ResponseEntity.ok(new MessageResponse("Successfully logged out."));
     }
 }
