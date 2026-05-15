@@ -5,6 +5,7 @@ import com.thevault.api.auth.entity.OtpVerification;
 import com.thevault.api.auth.repository.OtpVerificationRepository;
 import com.thevault.api.auth.service.impl.AuthServiceImpl;
 import com.thevault.api.common.exception.EmailAlreadyExistsException;
+import com.thevault.api.config.JwtProperties;
 import com.thevault.api.user.entity.User;
 import com.thevault.api.user.mapper.UserMapper;
 import com.thevault.api.user.repository.UserRepository;
@@ -14,6 +15,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -26,26 +28,16 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class AuthServiceTest {
 
-    @Mock
-    private UserRepository userRepository;
-
-    @Mock
-    private OtpVerificationRepository otpVerificationRepository;
-
-    @Mock
-    private PasswordEncoder passwordEncoder;
-
-    @Mock
-    private EmailService emailService;
-
-    @Mock
-    private JwtService jwtService;
-
-    @Mock
-    private UserDetailsService userDetailsService;
-
-    @Mock
-    private UserMapper userMapper;
+    @Mock private UserRepository userRepository;
+    @Mock private OtpVerificationRepository otpVerificationRepository;
+    @Mock private PasswordEncoder passwordEncoder;
+    @Mock private EmailService emailService;
+    @Mock private JwtService jwtService;
+    @Mock private UserDetailsService userDetailsService;
+    @Mock private UserMapper userMapper;
+    @Mock private AuthenticationManager authenticationManager;
+    @Mock private RefreshTokenService refreshTokenService;
+    @Mock private JwtProperties jwtProperties;
 
     @InjectMocks
     private AuthServiceImpl authService;

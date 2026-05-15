@@ -9,8 +9,10 @@ import com.thevault.api.auth.enums.SocialProviderType;
 import com.thevault.api.auth.repository.SocialProviderRepository;
 import com.thevault.api.auth.service.impl.SocialAuthServiceImpl;
 import com.thevault.api.auth.service.impl.SocialTokenValidatorFactory;
+import com.thevault.api.config.JwtProperties;
 import com.thevault.api.user.entity.User;
 import com.thevault.api.user.repository.UserRepository;
+import jakarta.servlet.http.HttpServletResponse;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -37,6 +39,8 @@ class SocialAuthServiceTest {
     @Mock private JwtService jwtService;
     @Mock private RefreshTokenService refreshTokenService;
     @Mock private UserDetailsService userDetailsService;
+    @Mock private JwtProperties jwtProperties;
+    @Mock private HttpServletResponse httpServletResponse;
 
     @InjectMocks
     private SocialAuthServiceImpl socialAuthService;
@@ -68,11 +72,13 @@ class SocialAuthServiceTest {
         when(userDetailsService.loadUserByUsername(anyString())).thenReturn(userDetails);
         when(jwtService.generateAccessToken(userDetails)).thenReturn("access-token");
         when(refreshTokenService.createRefreshToken(1L)).thenReturn(refreshToken);
+        when(jwtProperties.getRefreshExpirationMs()).thenReturn(604800000L);
 
-        JwtResponse response = socialAuthService.authenticate(request);
+        JwtResponse response = socialAuthService.authenticate(request, httpServletResponse);
 
         assertThat(response.getAccessToken()).isEqualTo("access-token");
-        assertThat(response.getRefreshToken()).isEqualTo("refresh-uuid");
+        // Refresh token is now in HTTP-only cookie — verify cookie was set
+        verify(httpServletResponse).addHeader(anyString(), anyString());
         verify(userRepository, never()).save(any());
     }
 
@@ -102,11 +108,13 @@ class SocialAuthServiceTest {
         when(userDetailsService.loadUserByUsername(anyString())).thenReturn(userDetails);
         when(jwtService.generateAccessToken(userDetails)).thenReturn("access-token-2");
         when(refreshTokenService.createRefreshToken(2L)).thenReturn(refreshToken);
+        when(jwtProperties.getRefreshExpirationMs()).thenReturn(604800000L);
 
-        JwtResponse response = socialAuthService.authenticate(request);
+        JwtResponse response = socialAuthService.authenticate(request, httpServletResponse);
 
         assertThat(response.getAccessToken()).isEqualTo("access-token-2");
         verify(userRepository).save(any(User.class));
         verify(socialProviderRepository).save(any(SocialProvider.class));
+        verify(httpServletResponse).addHeader(anyString(), anyString());
     }
 }
