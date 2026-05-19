@@ -1,0 +1,10 @@
+UPDATE service_catalog SET cover_image_url = '/images/services/styling-edit.jpg'         WHERE slug = 'styling-edit';
+UPDATE service_catalog SET cover_image_url = '/images/services/seasonal-wardrobe.png'     WHERE slug = 'seasonal-wardrobe';
+UPDATE service_catalog SET cover_image_url = '/images/services/holiday-wardrobe.png'      WHERE slug = 'holiday-wardrobe';
+UPDATE service_catalog SET cover_image_url = '/images/services/dressing-room.png'         WHERE slug = 'dressing-room';
+UPDATE service_catalog SET cover_image_url = '/images/services/styling-suite-pro.png'     WHERE slug = 'styling-suite-pro';
+UPDATE service_catalog SET cover_image_url = '/images/services/wishlist.png'              WHERE slug = 'wishlist';
+UPDATE service_catalog SET cover_image_url = '/images/services/private-rental.png'        WHERE slug = 'private-rental';
+UPDATE service_catalog SET cover_image_url = '/images/services/conciergerie.png'          WHERE slug = 'conciergerie';
+UPDATE service_catalog SET cover_image_url = '/images/services/journal.jpg'               WHERE slug = 'journal';
+UPDATE service_catalog SET cover_image_url = '/images/services/image-consultant-lab.png'  WHERE slug = 'image-consultant-lab';
