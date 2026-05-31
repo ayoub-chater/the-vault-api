@@ -33,7 +33,10 @@ services:
       - "8080:8080"
 
   web:
-    build: ../the-vault-web
+    build:
+      context: ../the-vault-web
+      args:
+        VITE_API_BASE_URL: /api
     container_name: vault_web
     ports:
       - "80:80"

@@ -18,6 +18,9 @@ jwt:
   expiration-ms: ${JWT_EXPIRATION_MS}
   refresh-expiration-ms: ${JWT_REFRESH_EXPIRATION_MS}
 
+cors:
+  allowed-origins: ${CORS_ALLOWED_ORIGINS}
+
 logging:
   level:
     com.thevault: INFO
