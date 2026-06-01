@@ -38,7 +38,7 @@ class BrandServiceTest {
         BrandReferenceDto dto2 = new BrandReferenceDto();
         dto2.setSlug("ganni");
 
-        when(brandReferenceRepository.findAllByIsActiveTrueOrderByDisplayOrderAsc()).thenReturn(entities);
+        when(brandReferenceRepository.findAllActive()).thenReturn(entities);
         when(brandMapper.toDtoList(entities)).thenReturn(List.of(dto1, dto2));
 
         List<BrandReferenceDto> result = brandService.getAllActiveBrands();

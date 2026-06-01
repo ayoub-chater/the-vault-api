@@ -2,7 +2,7 @@ INSERT INTO brand_references (name, slug, tier, display_order) VALUES
 --LUXURY 
 ('Chanel',            'chanel',            'LUXURY',        1),
 ('Louis Vuitton',     'louis-vuitton',     'LUXURY',        2),
-('Hermès',            'hermes',            'LUXURY',        3),
+('Hermes',            'hermes',            'LUXURY',        3),
 ('Dior',              'dior',              'LUXURY',        4),
 ('Givenchy',          'givenchy',          'LUXURY',        5),
 ('Saint Laurent',     'saint-laurent',     'LUXURY',        6),
@@ -26,7 +26,7 @@ INSERT INTO brand_references (name, slug, tier, display_order) VALUES
 ('Vetements',         'vetements',         'LUXURY',        24),
 ('Maison Margiela',   'maison-margiela',   'LUXURY',        25),
 ('Issey Miyake',      'issey-miyake',      'LUXURY',        26),
-('Comme des Garçons', 'comme-des-garcons', 'LUXURY',        27),
+('Comme des Garcons', 'comme-des-garcons', 'LUXURY',        27),
 
 -- CONTEMPORARY
 ('Ganni',             'ganni',             'CONTEMPORARY',  30),
@@ -51,7 +51,7 @@ INSERT INTO brand_references (name, slug, tier, display_order) VALUES
 ('adidas',            'adidas',            'STREETWEAR',    53),
 ('Nike',              'nike',              'STREETWEAR',    54),
 ('New Balance',       'new-balance',       'STREETWEAR',    55),
-('Stüssy',            'stussy',            'STREETWEAR',    56),
+('Stussy',            'stussy',            'STREETWEAR',    56),
 ('Raf Simons',        'raf-simons',        'STREETWEAR',    57),
 
 -- HIGH STREET 

@@ -19,7 +19,7 @@ public class BrandServiceImpl implements BrandService {
     @Override
     public List<BrandReferenceDto> getAllActiveBrands() {
         return brandMapper.toDtoList(
-                brandReferenceRepository.findAllByIsActiveTrueOrderByDisplayOrderAsc()
+                brandReferenceRepository.findAllActive()
         );
     }
 }
