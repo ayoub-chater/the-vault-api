@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 // Shared entity
+@Entity
 @Table(name = "brand_references")
 @Getter
 @Setter
@@ -32,5 +33,5 @@ public class BrandReference {
 
     @Column(name = "is_active")
     @Builder.Default
-    private boolean isActive = true;
+    private boolean active = true;
 }

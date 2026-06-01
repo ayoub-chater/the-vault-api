@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface BrandReferenceRepository extends JpaRepository<BrandReference, Long> {
 
-    @Query("SELECT b FROM BrandReference b WHERE b.isActive = true ORDER BY b.displayOrder ASC")
+    @Query("SELECT b FROM BrandReference b WHERE b.active = true ORDER BY b.displayOrder ASC")
     List<BrandReference> findAllActive();
 }
