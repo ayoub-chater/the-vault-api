@@ -41,7 +41,6 @@ public class StyleProfile {
     @Column(name = "skin_tone_group")
     private SkinToneGroup skinToneGroup;
 
-    // Style preferences — JSONB for evolution without schema migrations
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "fashion_approaches", columnDefinition = "jsonb")
     private List<String> fashionApproaches;
@@ -105,6 +104,11 @@ public class StyleProfile {
     @Column(name = "swipe_disliked_image_ids", columnDefinition = "jsonb")
     private List<Long> swipeDislikedImageIds;
 
+    // Brand preferences
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "brand_slugs", columnDefinition = "jsonb")
+    private List<String> brandSlugs;
+
     // Media & social
     @Column(name = "wardrobe_photo_url")
     private String wardrobePhotoUrl;
@@ -118,7 +122,7 @@ public class StyleProfile {
     // Completion
     @Column(name = "is_completed")
     @Builder.Default
-    private boolean isCompleted = false;
+    private boolean completed = false;
 
     @Column(name = "completed_at")
     private LocalDateTime completedAt;
