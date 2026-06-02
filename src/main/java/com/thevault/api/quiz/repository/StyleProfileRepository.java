@@ -13,5 +13,5 @@ public interface StyleProfileRepository extends JpaRepository<StyleProfile, Long
 
     boolean existsByUserId(Long userId);
 
-    boolean existsByUserIdAndIsCompletedTrue(Long userId);
+    boolean existsByUserIdAndCompletedTrue(Long userId);
 }
