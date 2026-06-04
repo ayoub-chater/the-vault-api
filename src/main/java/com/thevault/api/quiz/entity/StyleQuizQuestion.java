@@ -47,6 +47,9 @@ public class StyleQuizQuestion {
     @Column(name = "display_order")
     private Integer displayOrder;
 
+    @Column(name = "display_group")
+    private String displayGroup;
+
     @OneToMany(mappedBy = "question", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @OrderBy("displayOrder ASC")
     @Builder.Default

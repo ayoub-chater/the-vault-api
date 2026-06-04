@@ -16,5 +16,6 @@ public class QuizQuestionDto {
     private String placeholderText;
     private boolean required;
     private Map<String, Object> metadata;
+    private String displayGroup;
     private List<QuizOptionDto> options;
 }
