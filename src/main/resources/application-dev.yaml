@@ -25,13 +25,15 @@ jwt:
 
 cors:
   allowed-origins:
-    - http://localhost:5173      
-    - http://localhost:3000      
-    - http://localhost:19006     
-    - http://localhost:8081      
-    - http://localhost           
-    - http://localhost:80        
-    - http://10.0.2.2:19006     
+    - http://localhost:5173
+    - http://localhost:3000
+    - http://localhost:19006
+    - http://localhost:8081
+    - http://localhost
+    - http://localhost:80
+    - http://10.0.2.2:19006
+    - http://192.168.0.95:19006
+    - http://192.168.0.95:8081
 
 logging:
   level:

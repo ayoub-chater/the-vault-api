@@ -34,6 +34,11 @@ public class GlobalExceptionHandler {
         return build(HttpStatus.FORBIDDEN, ex.getMessage());
     }
 
+    @ExceptionHandler(QuizNotCompletedException.class)
+    public ResponseEntity<ErrorResponse> handleQuizNotCompleted(QuizNotCompletedException ex) {
+        return build(HttpStatus.FORBIDDEN, ex.getMessage());
+    }
+
     @ExceptionHandler(InvalidRefreshTokenException.class)
     public ResponseEntity<ErrorResponse> handleInvalidRefreshToken(InvalidRefreshTokenException ex) {
         return build(HttpStatus.UNAUTHORIZED, ex.getMessage());
