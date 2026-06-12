@@ -39,6 +39,16 @@ public class GlobalExceptionHandler {
         return build(HttpStatus.NOT_FOUND, ex.getMessage());
     }
 
+    @ExceptionHandler(ZebraSessionNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleZebraSessionNotFound(ZebraSessionNotFoundException ex) {
+        return build(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
+
+    @ExceptionHandler(NoAvailableConsultantException.class)
+    public ResponseEntity<ErrorResponse> handleNoAvailableConsultant(NoAvailableConsultantException ex) {
+        return build(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
+
     @ExceptionHandler(EmailNotVerifiedException.class)
     public ResponseEntity<ErrorResponse> handleEmailNotVerified(EmailNotVerifiedException ex) {
         return build(HttpStatus.FORBIDDEN, ex.getMessage());
