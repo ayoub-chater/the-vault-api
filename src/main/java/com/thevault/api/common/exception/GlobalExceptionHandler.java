@@ -29,6 +29,11 @@ public class GlobalExceptionHandler {
         return build(HttpStatus.NOT_FOUND, ex.getMessage());
     }
 
+    @ExceptionHandler(SubscriptionPlanNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleSubscriptionPlanNotFound(SubscriptionPlanNotFoundException ex) {
+        return build(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
+
     @ExceptionHandler(EmailNotVerifiedException.class)
     public ResponseEntity<ErrorResponse> handleEmailNotVerified(EmailNotVerifiedException ex) {
         return build(HttpStatus.FORBIDDEN, ex.getMessage());
